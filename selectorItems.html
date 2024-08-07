@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Track</title>
+    <link rel="stylesheet" href="index-logIn-register/index.css">
+    <link rel="stylesheet" href="general/general.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body>
+    <header> 
+        <nav class="menu"> 
+            <a href="index.html">
+                <img id="logo" src="img/logo.png" width="110px" height="110px">
+            </a> 
+            <ul>
+                <li><h1 class="titulo">SECURE TRACK</h1></li>
+                <li><a href="index.html" class="textLi">INICIO</a></li> 
+                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
+                <li class="desplegableHeader">
+                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
+                     <div class="desplegable-contenido"> 
+                        <!--aca se tienen que cargar los carros que se pueden retirar (luego del log in) -->
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>   
+    <main class="selectors">
+        <select class="select-libertador">
+            <option value="" disabled selected>Selecciona el piso</option>
+            <option class="option-select" value="L0">Libertador Planta baja</option>
+            <option class="option-select"value="L0">Libertador Primer piso</option>
+            <option class="option-select" value="L0">Libertador segundo piso</option>
+            <option class="option-select" value="L0">Libertador tercer piso</option>   
+        </select>
+        <select class="select-monta"> 
+            <option value="" disabled selected>Selecciona el piso</option>
+            <option class="option-select" value="M0">Montañeses Primer piso</option>
+            <option class="option-select" value="M1">Montañeses segundo piso</option>
+            <option class="option-select" value="M2">Montañeses tercer piso</option>   
+            <option class="option-select" value="M3">Montañeses cuarto piso</option>   
+            <option class="option-select" value="M4">Montañeses quinto piso</option>   
+        </select>
+        <select class="classrooms" id="classrooms"></select>
+      <a href="qr.html"> Retirar</a>
+      <!-- eso se tiene que cargar una vez que hayan elegido options  -->
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="politica-terminos/politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="politica-terminos/terminos-y-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2024 Secure Track  Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script> 
+    <main> 
+</body>
+</html>
