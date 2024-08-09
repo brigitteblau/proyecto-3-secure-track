@@ -1,0 +1,99 @@
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; 
+}
+
+.decision-tab {
+    display: flex; 
+    justify-content: center; 
+    width: 100%;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-direction: row; 
+}
+
+.decision-button {
+    padding: 12px 24px; 
+    background-color: #3C6975;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; 
+    margin: 0 10px; 
+    text-align: center; 
+    z-index: 2; }
+
+.decision-button:hover {
+    background-color: #68B2A0;
+}
+
+
+.content {
+    width: 100%;
+    display: grid;
+    place-items: center; 
+    height: auto; 
+    position: relative;
+}
+
+.content div {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    display: none; 
+    z-index: 1; 
+    transition: opacity 0.3s ease; 
+}
+
+.content div.active {
+    display: block; 
+    opacity: 1;
+}
+
+.content label, .content input, .content select, .content button {
+    display: block;
+    margin: 15px 0;
+}
+
+.content button {
+    background-color: #3C6975;
+    color: white;
+    border: none;
+    padding: 12px 24px; 
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content button:hover {
+    background-color: #68B2A0;
+}
+
+.content p a {
+    color: #3C6975;
+    text-decoration: none;
+}
+
+.content p a:hover {
+    text-decoration: none;
+}
+
+
+input {
+    border-color: aquamarine;
+    border-radius: 5px; 
+    padding: 10px; 
+    width: 80%;
+    box-sizing: border-box; 
+}
