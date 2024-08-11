@@ -1,37 +1,98 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-.slider-frame {
-    width: 1280px;
-    height: 720px; 
-    margin: 50px auto 5px; 
-    overflow: hidden;
-    position: relative; 
-}
-.slider-frame ul {
-    display: flex;
-    padding: 0;
-    width: 500%; 
-    animation: pasar 50s infinite alternate ease-in-out;
-    transition: transform 0.5s ease-in-out;
-    position: absolute;
-}
-.slider-frame li {
-    list-style: none;
-    width: 100%;
-}
-.slider-frame img {
-    width: 80%
-    height: 100%;
-    object-fit: cover; 
+header{
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    color: #fff;
+    padding: 7px 0;
 }
 
-@keyframes pasar {
-    0% { transform: translateX(0); }
-    20% { transform: translateX(-100%); }
-    40% { transform: translateX(-200%); }
-    60% { transform: translateX(-300%); }
-    80% { transform: translateX(-400%); }
-    100% { transform: translateX(-500%); }
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.slogan {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+     color: #3C6975; 
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.left-content,
+.right-content {
+    flex: 1;
+    padding: 10px;
+}
+
+.left-content img,
+.right-content img {
+    width: 100%;
+    height: auto;
+}
+
+/* Main Content */
+.welcome {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.welcome h1 {
+    margin-bottom: 20px;
+}
+
+.welcome p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.welcome-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+   background-color:  #3C6975; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.welcome-button:hover {
+    background-color:  #224149; 
+    padding: 12px 22px;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .left-content,
+    .right-content {
+        flex: none;
+        width: 100%;
+    }
+
+    .menu ul {
+        flex-direction: column;
+    }
+
+    .menu ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
 }

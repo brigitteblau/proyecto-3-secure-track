@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,11 @@
     <link rel="icon" type="image/png" href="img/logo.png">
 </head>
 <body>
+    <!-- Header Section -->
     <header> 
         <nav class="menu"> 
             <a href="index.html">
-                <img id="logo" src="img/logo.png" width="110px" height="110px">
+                <img id="logo" src="img/logo.png" width="110px" height="110px" alt="Secure Track Logo">
             </a> 
             <ul>
                 <li><h1 class="titulo">SECURE TRACK</h1></li>
@@ -20,30 +21,46 @@
                 <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
                 <li class="desplegableHeader">
                     <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
-                     <div class="desplegable-contenido"> 
-                        <!--aca se tienen que cargar los carros que se pueden retirar (luego del log in) -->
+                    <div class="desplegable-contenido"> 
+                        <!-- Aquí se cargarán los carros que se pueden retirar (luego del log in) -->
                     </div>
                 </li>
             </ul>
         </nav>
     </header>   
     <main>
-        <div class="slider-frame"> 
-<ul> 
-  <li class="slider-img"><img src="slider-img/1.jfif" alt=""></li>
-  <li class="slider-img"><img src="slider-img/3.jfif" alt=""></li>
-  <li class="slider-img"><img src="slider-img/4.jfif" alt=""></li>
-  <li class="slider-img"><img src="slider-img/5.jfif" alt=""></li>
-  <li class="slider-img"><img src="slider-img/6.jfif" alt=""></li>
-</ul>
-</div>
-<div class="welcome">
-    <h1>Bienvienidos</h1> 
-<p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum accusamus consequuntur, quas reiciendis veritatis exercitationem deleniti est ea animi. Voluptatum, perferendis laudantium possimus quibusdam a ad culpa vitae. Ea, nesciunt!</p>
-<a href="login.html"> Iniciar Sesion</a>
-<a href="registro.html"> Registrarse</a>
-</div>
-    </main>
+        <section class="welcome">
+            <p class="slogan" id="slogan">BIENVENID@S/ WELCOME / ברוג'ים הבאים</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum accusamus consequuntur, quas reiciendis veritatis exercitationem deleniti est ea animi. Voluptatum, perferendis laudantium possimus quibusdam a ad culpa vitae. Ea, nesciunt!</p>
+            <a href="user.html" class="welcome-button">Iniciar Sesión</a>
+            <a href="user.html" class="welcome-button">Registrarse</a>
+        </section>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <p class="slogan" id="slogan">RETIRA UNA COMPUTADORA SIN PROBLEMA</p>
+        <div class="content-wrapper">
+            <img src="" alt="grafico" class="left-content"> 
+            <p class="right-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
+        </div>
+        <div class="content-wrapper">
+            <p class="left-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
+            <img src="" alt="gente sacando compus" class="right-content"> 
+        </div>
+    </section>
+    <section class="hero-section">
+        <p class="slogan" id="slogan">COMO FUNCIONA?</p>
+        <div class="content-wrapper">
+            <img src="" alt="trabitas" class="left-content"> 
+            <p class="right-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
+        </div>
+        <div class="content-wrapper">
+            <p class="left-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
+            <img src="" alt="explicacion del backend" class="right-content"> 
+        </div>
+    </section>
+</main>
+    <!-- Footer Section -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -51,11 +68,13 @@
                 <a href="politica-terminos/terminos-y-condiciones.html">Términos y Condiciones</a>
             </div>
             <div class="footer-info">
-                <p>&copy; 2024 Secure Track  Todos los derechos reservados.</p>
+                <p>&copy; 2024 Secure Track. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
+
     <script src="main.js"></script> 
-    <main> 
+    <script src="index.js"></script> 
+
 </body>
 </html>

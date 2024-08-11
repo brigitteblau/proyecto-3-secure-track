@@ -1,99 +1,117 @@
-.container {
-    width: 80%;
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+body {
+    /* background: linear-gradient(300deg, #00BFFF, #1E90FF, #000080); */
+    min-height: 100vh;
+    margin: 0;
     display: flex;
-    flex-direction: column;
+}
+
+main {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    position: relative; 
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .decision-tab {
-    display: flex; 
-    justify-content: center; 
-    width: 100%;
-    margin-bottom: 20px;
-    align-items: center;
-    flex-direction: row; 
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
 }
 
 .decision-button {
-    padding: 12px 24px; 
-    background-color: #3C6975;
-    color: white;
+    flex: 1;
+    padding: 15px 20px;
+    background-color: #458797; 
     border: none;
-    border-radius: 5px;
+    outline: none;
     cursor: pointer;
-    font-size: 18px; 
-    margin: 0 10px; 
-    text-align: center; 
-    z-index: 2; }
+    transition: background-color 0.3s;
+    color: #fff;
+}
+
+.decision-button.active {
+    background-color:#1f6374; 
+}
 
 .decision-button:hover {
-    background-color: #68B2A0;
+    padding: 17px 22px;
 }
-
 
 .content {
-    width: 100%;
-    display: grid;
-    place-items: center; 
-    height: auto; 
-    position: relative;
+    display: none;
+    padding: 20px;
 }
 
-.content div {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0;
-    display: none; 
-    z-index: 1; 
-    transition: opacity 0.3s ease; 
-}
-
-.content div.active {
-    display: block; 
-    opacity: 1;
-}
-
-.content label, .content input, .content select, .content button {
+.content.active {
     display: block;
-    margin: 15px 0;
 }
 
-.content button {
-    background-color: #3C6975;
-    color: white;
+.title {
+    margin: 0 0 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.submit {
+    padding: 10px;
+    background-color: #1f6374; 
+    color: #fff;
     border: none;
-    padding: 12px 24px; 
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.content button:hover {
-    background-color: #68B2A0;
+.submit:hover{
+    background-color: #1b6179;
 }
 
-.content p a {
-    color: #3C6975;
+
+p {
+    text-align: center;
+}
+
+a {
+   text-decoration: double;
     text-decoration: none;
 }
 
-.content p a:hover {
-    text-decoration: none;
+a:hover {
+    text-decoration: underline;
 }
 
-
-input {
-    border-color: aquamarine;
-    border-radius: 5px; 
-    padding: 10px; 
-    width: 80%;
-    box-sizing: border-box; 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
 }
