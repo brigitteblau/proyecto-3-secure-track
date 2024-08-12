@@ -1,22 +1,47 @@
-function showTab(tabName) {
-   var i, tabContent, tabLinks;
+document.addEventListener("DOMContentLoaded", function() {
+    function showTab(tabId) {
 
-    // Ocultar todos los contenidos de las pestañas
-    tabContent = document.getElementsByClassName("content");
-    for (i = 0; i < tabContent.length; i++) {
-        tabContent[i].classList.remove("active");
+        let tabContent = document.getElementsByClassName("content");
+        for (let i = 0; i < tabContent.length; i++) {
+            tabContent[i].classList.remove("active");
+        }
+        let tab = document.getElementById(tabId);
+        if (tab) {
+            tab.classList.add("active");}
+
+        let tabLinks = document.getElementsByClassName("welcome-button");
+        for (let i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove("active"); }
+        let tabLink = document.querySelector(`.welcome-button[href$='#${tabId}']`);
+        if (tabLink) {
+            tabLink.classList.add("active");
+        }
     }
-
-    // Eliminar la clase "active" de todos los botones de las pestañas
-    tabLinks = document.getElementsByClassName("decision-button");
-    for (i = 0; i < tabLinks.length; i++) {
-        tabLinks[i].classList.remove("active");
+  let hash = window.location.hash.substring(1); 
+    if (hash) {
+        showTab(hash);
     }
+});
 
-    // Mostrar el contenido actual de la pestaña y agregar una clase "active" al botón que abrió la pestaña
-    document.getElementById(tabName).classList.add("active");
-    document.querySelector(`.decision-button[onclick="showTab('${tabName}')"]`).classList.add("active");
+  
+function brigu(params) {
+    let login= getElementById("login")
 }
+
+  
+//   document.getElementById("btn").addEventListener("click", brigitte)
+//   document.getElementById("btn").addEventListener("mouseleave", onLeave);
+//   document.getElementById("btn").addEventListener("mouseenter", onEnter);() {
+//     document.getElementById("presencia").innerHTML = "Mouse afuera";
+//   }
+  
+//   function onEnter() {
+//     document.getElementById("presencia").innerHTML = "Mouse adentro";
+//   }
+  
+//   document.getElementById("btn").addEventListener("click", brigitte)
+//   document.getElementById("btn").addEventListener("mouseleave", onLeave);
+//   document.getElementById("btn").addEventListener("mouseenter", onEnter);
 
 
 //backk 
