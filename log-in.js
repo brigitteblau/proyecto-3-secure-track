@@ -23,26 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-  
-function brigu(params) {
-    let login= getElementById("login")
-}
-
-  
-//   document.getElementById("btn").addEventListener("click", brigitte)
-//   document.getElementById("btn").addEventListener("mouseleave", onLeave);
-//   document.getElementById("btn").addEventListener("mouseenter", onEnter);() {
-//     document.getElementById("presencia").innerHTML = "Mouse afuera";
-//   }
-  
-//   function onEnter() {
-//     document.getElementById("presencia").innerHTML = "Mouse adentro";
-//   }
-  
-//   document.getElementById("btn").addEventListener("click", brigitte)
-//   document.getElementById("btn").addEventListener("mouseleave", onLeave);
-//   document.getElementById("btn").addEventListener("mouseenter", onEnter);
-
+  let buttonLogin = getElementById("button-login").addEventListener("click")
 
 //backk 
 let submit = document.getElementById("submit");
