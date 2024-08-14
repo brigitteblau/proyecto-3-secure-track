@@ -14,7 +14,7 @@
         <div class="container">
             <div class="decision-tab">
                 <button class="decision-button active" onclick="showTab('login')" id="button-login">Iniciar Sesión</button>
-                <button class="decision-button" onclick="showTab('register')" id="button-login">Registrarse</button>
+                <button class="decision-button" onclick="showTab('register')" id="button-register">Registrarse</button>
             </div>
             <div id="login" class="content active">
                 <h2 class="title">Iniciar Sesión</h2>
@@ -23,9 +23,8 @@
                     <input type="text" id="username" name="username" required>
                     <label for="password">Contraseña</label>
                     <input type="password" id="password" name="password" required>
-                    <button type="submit" class="submit">Entrar</button>
+                    <button type="submit" class="submit" id="submit-login">Entrar</button>
                 </form>
-                <p> ¿No tienes cuenta? <a href="javascript:void(0);" onclick="showTab('register')">Registrarse</a></p>
             </div>
             <div id="register" class="content">
                 <h2 class="title">Registro</h2>
@@ -41,9 +40,8 @@
                         <option value="estudiante">Estudiante</option>
                         <option value="asistente">Asistente</option>
                     </select>
-                    <button type="submit" class="submit">Registrarse</button>
+                    <button type="submit" class="submit" id="submit-register">Registrarse</button>
                 </form>
-                <p> ¿Ya tienes cuenta? <a href="javascript:void(0);" onclick="showTab('login')">Iniciar Sesión</a></p>
             </div>
         </div>
     </main>
