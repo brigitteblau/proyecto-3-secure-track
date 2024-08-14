@@ -6,7 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track QR</title>
     <link rel="stylesheet" href="general/general.css">
+    <link rel="stylesheet" href="index-logIn-register/index.css">
     <link rel="icon" type="image/png" href="img/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <style>    
+     main{
+    align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+    }
+    </style>
 </head>
 <body>
     <header> 
@@ -28,6 +38,7 @@
         </nav>
     </header>   
     <main>
+        <p class="slogan" id="slogan"> MOSTRA ESTE CODIGO DE BARRAS PARA PODER ESCANEAR!! </p>
         <svg id="barcode"></svg>
     </main>
     <footer>

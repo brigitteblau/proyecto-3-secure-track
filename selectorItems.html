@@ -27,29 +27,34 @@
             </ul>
         </nav>
     </header>   
-    <button id="openModal">Seleccionar Carro</button>
 
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Selecciona tu carro</h2>
+    <main>
+        <select class="select-libertador">
+            <option value="" disabled selected>Selecciona el piso</option>
+            <option class="option-select" value="L0">Libertador Planta baja</option>
+            <option class="option-select"value="L0">Libertador Primer piso</option>
+            <option class="option-select" value="L0">Libertador segundo piso</option>
+            <option class="option-select" value="L0">Libertador tercer piso</option>   
+        </select>
+        <select class="select-monta"> 
+            <option value="" disabled selected>Selecciona el piso</option>
+            <option class="option-select" value="M0">Montañeses Primer piso</option>
+            <option class="option-select" value="M1">Montañeses segundo piso</option>
+            <option class="option-select" value="M2">Montañeses tercer piso</option>   
+            <option class="option-select" value="M3">Montañeses cuarto piso</option>   
+            <option class="option-select" value="M4">Montañeses quinto piso</option>   
+        </select>
+        <select class="classrooms" id="classrooms"></select>
+      <a href="qr.html"> Retirar</a>
+      <!-- eso se tiene que cargar una vez que hayan elegido options  -->
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="politica-terminos/politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="politica-terminos/terminos-y-condiciones.html">Términos y Condiciones</a>
             </div>
-            <div class="modal-body" id="modalBody">
-                <p>¿Deseas retirar un carro en el edificio de Libertador o Montañeses?</p>
-                <select id="building">
-                    <option value="" disabled selected>Selecciona un edificio</option>
-                    <option value="libertador">Edificio Libertador</option>
-                    <option value="montañeses">Edificio Montañeses</option>
-                </select>
-                <input type="number" id="floor" placeholder="Número de piso" min="1" max="6">
-            </div>
-            <div class="modal-footer">
-                <button id="submit">Confirmar</button>
-                <button id="closeModal">Cancelar</button>
-            </div>
-        </div>
-    </div>
+  </main>
     <footer>
         <div class="footer-content">
             <div class="footer-links">

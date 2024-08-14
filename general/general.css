@@ -27,6 +27,7 @@ header {
 #logo {
     margin-right: 20px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 5%;
 }
 
 .titulo {
@@ -98,43 +99,47 @@ header {
 .desplegable-contenido a:hover {
     background-color: #f0f0f0;
 }
-
 footer {
     background: #3C6975;
-    color: #fff; 
-    padding: 20px; 
+    color: #fff;
+    padding: 20px;
     position: relative;
     bottom: 0;
     width: 100%;
-    margin: 40px 40px 5px 5px ;  
+    margin: 40px 40px 5px 5px;
     display: flex;
-   
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
 }
 
 .footer-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
 }
 
 .footer-links {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .footer-links a {
-    color: #fff; 
-    text-decoration: none; 
-    margin: 0 10px; 
-    font-size: 16px; 
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
 }
 
 .footer-links a:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 .footer-info {
     text-align: center;
 }
+
  /* para que se vea bien bien en pc */
 @media (min-width: 768px) {
     header{
