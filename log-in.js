@@ -40,7 +40,7 @@ async function check_user(){
     let user= {
         "USER": document.getElementById("username").value,
         "PASSWORD": document.getElementById("password").value,
-   console.log(user),
+//    console.log(user),
     }
     let response = await fetch(`https://secure-track-db.vercel.app/users/login`, {
         method:"POST",
