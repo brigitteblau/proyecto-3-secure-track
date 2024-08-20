@@ -63,7 +63,11 @@ main {
     text-align: center;
 }
 
-form {
+#login {
+    display: flex;
+    flex-direction: column;
+}
+#register{
     display: flex;
     flex-direction: column;
 }
