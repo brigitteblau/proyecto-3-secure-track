@@ -1,0 +1,17 @@
+main{
+    align-items: center;
+    justify-content: center;
+}
+.building{
+    padding: 8px auto;
+    border-radius: 5px;
+    border-color: aqua;
+    background-color: transparent;
+}
+.disactive{
+display: none;
+}
+
+.retirard{
+    display: none;
+}

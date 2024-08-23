@@ -27,17 +27,19 @@
             </ul>
         </nav>
     </header>   
-
     <main>
-        <select class="select-libertador">
-            <option value="" disabled selected>Selecciona el piso</option>
+        <div class="decision" id="decision">
+            <p> Retirar una computadora del edifico <button class="building" id="monta">MONTAÑESES</button> o <button class="building" id="libertador">LIBERTADOR</button></p>
+        </div>
+        <select class="select-libertador disactive">
+            <option value="" disabled selected>Selecciona el piso de Libertador</option>
             <option class="option-select" value="L0">Libertador Planta baja</option>
             <option class="option-select"value="L0">Libertador Primer piso</option>
             <option class="option-select" value="L0">Libertador segundo piso</option>
             <option class="option-select" value="L0">Libertador tercer piso</option>   
         </select>
-        <select class="select-monta"> 
-            <option value="" disabled selected>Selecciona el piso</option>
+        <select class="select-monta disactive"> 
+            <option value="" disabled selected>Selecciona el piso de Montañeses</option>
             <option class="option-select" value="M0">Montañeses Primer piso</option>
             <option class="option-select" value="M1">Montañeses segundo piso</option>
             <option class="option-select" value="M2">Montañeses tercer piso</option>   
@@ -45,16 +47,9 @@
             <option class="option-select" value="M4">Montañeses quinto piso</option>   
         </select>
         <select class="classrooms" id="classrooms"></select>
-      <a href="qr.html"> Retirar</a>
+      <a href="qr.html" class="retirar retirard" id="retirar"> Retirar</a>
       <!-- eso se tiene que cargar una vez que hayan elegido options  -->
     </main>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="politica-terminos/politica-de-privacidad.html">Política de Privacidad</a>
-                <a href="politica-terminos/terminos-y-condiciones.html">Términos y Condiciones</a>
-            </div>
-  </main>
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -66,7 +61,7 @@
             </div>
         </div>
     </footer>
-    <script src="js/main.js"></script> 
+    <script src="js/selectors.js"></script> 
     <main> 
 </body>
 </html>

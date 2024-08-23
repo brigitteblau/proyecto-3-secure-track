@@ -54,7 +54,8 @@ main {
 }
 
 .content.active {
-    display: block;
+     display: none; /*lo cambie a none en una de esas quizas anda  */
+
 }
 
 .title {

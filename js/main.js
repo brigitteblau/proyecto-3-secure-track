@@ -1,4 +1,5 @@
-import { register_user } from "./repository.js";
+import { register_user } from "js/repository.js";
+
 document.addEventListener("DOMContentLoaded", function() {
     function showTab(tabId) {
         let tabContent = document.getElementsByClassName("content");
@@ -9,29 +10,37 @@ document.addEventListener("DOMContentLoaded", function() {
         if (tab) {
             tab.classList.add("active");
         }
-        let tabLinks = document.getElementsByClassName("welcome-button");
+        
+        let tabLinks = document.getElementsByClassName("decision-button");
         for (let i = 0; i < tabLinks.length; i++) {
             tabLinks[i].classList.remove("active");
         }
 
-        let tabLink = document.querySelector(`.welcome-button[href$='#${tabId}']`);
+        let tabLink = document.getElementById("button-" + tabId);
         if (tabLink) {
             tabLink.classList.add("active");
         }
     }
+
     function handleButtonClick(event) {
         let tabId = event.currentTarget.id.replace('button-', '');
         showTab(tabId);
     }
+
     let buttons = document.getElementsByClassName("decision-button");
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", handleButtonClick);
     }
+
     let hash = window.location.hash.substring(1);
     if (hash) {
         showTab(hash);
+    } else {
+        showTab("login");  
     }
 });
+
+
 
 let submit = document.getElementById("submit-register");
 submit.addEventListener("click", ()=>register_user({
