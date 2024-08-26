@@ -1,4 +1,3 @@
-import { register_user } from "js/repository.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     function showTab(tabId) {
@@ -48,23 +47,60 @@ submit.addEventListener("click", ()=>register_user({
     PASSWORD: document.getElementById("register-password").value,
 }));
 
+let hola = document.getElementById("submit-login");
+hola.addEventListener("click", ()=>logueo_user({
+    USER: document.getElementById("username").value,
+    PASSWORD: document.getElementById("password").value,
+}));
 
 
 
+ async function register_user (user){
+    console.log(user);
+
+   try {
+    let response = await fetch(`https://secure-track-db.vercel.app/users/register`, {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(user),
+        
+    });
+    let data = await response.json();
+    console.log(data);
+    if (response.status === 201) {
+        location.href = "estudiante.html"
+    }
+   } catch (error) {
+    console.log(error)
+   }
+}
 
 
+async function logueo_user (user){
+    console.log(user);
 
+   try {
+    let response = await fetch(`https://secure-track-db.vercel.app/users/login`, {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(user),
+        
+    });
+    let data = await response.json();
+    console.log(data);
+    if (data.OCUPACION === "Estudiante") {
+        location.href = "https://google.com"
+    }else if(data.OCUPACION === "Asistente"){
+        location.href = "https://google.com"
 
-
-//ben
-
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     JsBarcode("#barcode", "briguu", {
-//         format: "CODE128", 
-//         lineColor: "#3C6975", 
-//         width: 2, 
-//         height: 100, 
-//         displayValue: false
-//     });
-//});
+    }else{
+        location.href = "https://google.com"
+    }
+   } catch (error) {
+    console.log(error)
+   }
+}
