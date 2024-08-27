@@ -77,7 +77,6 @@ hola.addEventListener("click", ()=>logueo_user({
    }
 }
 
-
 async function logueo_user (user){
     console.log(user);
 
@@ -93,12 +92,18 @@ async function logueo_user (user){
     let data = await response.json();
     console.log(data);
     if (data.OCUPACION === "Estudiante") {
-        location.href = "https://google.com"
+        location.href = "estudiante.html"
+        localStorage.setItem("estudio-Key", "user-log");
+
     }else if(data.OCUPACION === "Asistente"){
-        location.href = "https://google.com"
+        location.href = "asistente.html"
+        localStorage.setItem("asist-Key", "asist-log");
+
 
     }else{
-        location.href = "https://google.com"
+        location.href = "profesor.html"
+        localStorage.setItem("Prof-Key", "profe-log");
+
     }
    } catch (error) {
     console.log(error)
