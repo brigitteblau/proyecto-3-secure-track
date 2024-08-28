@@ -31,24 +31,26 @@
         <div class="decision" id="decision">
             <p> Retirar una computadora del edifico <button class="building" id="monta">MONTAÑESES</button> o <button class="building" id="libertador">LIBERTADOR</button></p>
         </div>
-        <select class="select-libertador disactive">
+        <select class="select-libertador disactive" id="select-libertador">
             <option value="" disabled selected>Selecciona el piso de Libertador</option>
             <option class="option-select" value="L0">Libertador Planta baja</option>
-            <option class="option-select"value="L0">Libertador Primer piso</option>
-            <option class="option-select" value="L0">Libertador segundo piso</option>
-            <option class="option-select" value="L0">Libertador tercer piso</option>   
+            <option class="option-select"value="L1">Libertador Primer piso</option>
+            <option class="option-select" value="L2">Libertador segundo piso</option>
+            <option class="option-select" value="L3">Libertador tercer piso</option>   
         </select>
-        <select class="select-monta disactive"> 
+        <select class="select-monta disactive" id="select-monta"> 
             <option value="" disabled selected>Selecciona el piso de Montañeses</option>
-            <option class="option-select" value="M0">Montañeses Primer piso</option>
-            <option class="option-select" value="M1">Montañeses segundo piso</option>
-            <option class="option-select" value="M2">Montañeses tercer piso</option>   
-            <option class="option-select" value="M3">Montañeses cuarto piso</option>   
-            <option class="option-select" value="M4">Montañeses quinto piso</option>   
+            <option class="option-select" value="M1">Montañeses Primer piso</option>
+            <option class="option-select" value="M2">Montañeses segundo piso</option>
+            <option class="option-select" value="M3">Montañeses tercer piso</option>   
+            <option class="option-select" value="M4">Montañeses cuarto piso</option>   
+            <option class="option-select" value="M5">Montañeses quinto piso</option>   
         </select>
-        <select class="classrooms" id="classrooms"></select>
-      <a href="qr.html" class="retirar retirard" id="retirar"> Retirar</a>
-      <!-- eso se tiene que cargar una vez que hayan elegido options  -->
+        <select class="classrooms disactive" id="classrooms">
+            <option value="" disabled selected id="optionMonta">Seleccioná el aula del piso correspondiente monta</option>
+        </select>
+        <button class="confirmar" id="confirmButton" style="display: none;">Confirmar</button>
+   
     </main>
     <footer>
         <div class="footer-content">
@@ -64,4 +66,4 @@
     <script src="js/selectors.js"></script> 
     <main> 
 </body>
-</html>
+</html
