@@ -1,3 +1,6 @@
+import { getCarros } from "./repository.js";
+let libertador = [];
+let monta = [];
 document.getElementById("monta").addEventListener("click", showMonta);
 document.getElementById("libertador").addEventListener("click", showLibertador);
 
@@ -5,14 +8,14 @@ function showMonta() {
     document.querySelector(".select-libertador").classList.add("disactive");
     document.querySelector(".select-monta").classList.remove("disactive");
     document.getElementById("classrooms").classList.add("disactive");
-    checkAllSelected(); 
+    updateClassroomsMonta(); 
 }
 
 function showLibertador() {
     document.querySelector(".select-monta").classList.add("disactive");
     document.querySelector(".select-libertador").classList.remove("disactive");
     document.getElementById("classrooms").classList.add("disactive");
-    checkAllSelected(); 
+    updateClassroomsLib(); 
 }
 
 let selectMonta = document.getElementById("select-monta");
@@ -23,70 +26,68 @@ selectMonta.addEventListener("change", updateClassroomsMonta);
 selectLib.addEventListener("change", updateClassroomsLib);
 classrooms.addEventListener("change", checkAllSelected); 
 
-function updateClassroomsMonta() {
-    let value = selectMonta.value;
-    updateClassroomsOptions(value, "monta");
-}
+
 
 function updateClassroomsLib() {
     let value = selectLib.value;
-    updateClassroomsOptions(value, "libertador");
+    let selector = document.getElementById("classroooms");
+    for (let index = 0; index < libertador.length; index++) {
+        if (monta[index].ROOM_NUMBER[1] == value) {
+            let option = document.createElement("option");
+            option.value = monta[index].ID;
+            option.innerText = monta[index].ROOM_NUMBER;
+            selector.appendChild(option);
+        }        
+    }
+
+    if (selector.options.length > 0) {
+        selector.style.display = "block";
+    }
+}
+function updateClassroomsLib() {
+    let value = selectLib.value;
+    let selector = document.getElementById("classroooms");
+    for (let index = 0; index < libertador.length; index++) {
+        if (libertador[index].ROOM_NUMBER[1] == value) {
+            let option = document.createElement("option");
+            option.value = libertador[index].ID;
+            option.innerText = libertador[index].ROOM_NUMBER;
+            selector.appendChild(option);
+        }        
+    }
+
+    if (selector.options.length > 0) {
+        selector.style.display = "block";
+    }
 }
 
-function updateClassroomsOptions(piso, edificio) {
-    let options = [];
-
-    if (edificio === "monta") {
-        switch (piso) {
-            case "M1":
-                options = ["101", "102", "103"];
-                break;
-            case "M2":
-                options = ["201", "202", "203"];
-                break;
-            case "M3":
-                options = ["301", "302", "303"];
-                break;
-            case "M4":
-                options = ["401", "402", "403"];
-                break;
-            case "M5":
-                options = ["501", "502", "503"];
-                break;
-        }
-    } else if (edificio === "libertador") {
-        switch (piso) {
-            case "L0":
-                options = ["04", "05"];
-                break;
-            case "L1":
-                options = ["104", "105"];
-                break;
-            case "L2":
-                options = ["204", "205"];
-                break;
-            case "L3":
-                options = ["304", "305"];
-                break;
-        }
+function updateClassroomsMonta() {
+    let value = selectLib.value;
+    let selector = document.getElementById("classroooms");
+    for (let index = 0; index < libertador.length; index++) {
+        if (libertador[index].ROOM_NUMBER[1] == value) {
+            let option = document.createElement("option");
+            option.value = libertador[index].ID;
+            option.innerText = libertador[index].ROOM_NUMBER;
+            selector.appendChild(option);
+        }        
     }
-    classrooms.innerHTML = "";
 
-    let defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = "Selecciona un aula";
-    defaultOption.disabled = true;
-    defaultOption.selected = true;
-    classrooms.appendChild(defaultOption);
+    if (selector.options.length > 0) {
+        selector.style.display = "block";
+    }
+}
 
-    options.forEach(option => {
-        let opt = document.createElement("option");
-        opt.value = option;
-        opt.textContent = option;
-        classrooms.appendChild(opt);
-    });
 
-    classrooms.classList.remove("disactive");
+async function updateClassroomsOptions(piso, edificio) {
+
+   let data = await getCarros()
+   for (let index = 0; index < data.length; index++) {
+        if (data[index].ROOM_NUMBER[0] == "M") {
+            monta.push(data[index])
+        }else{libertador.push(data[index])}    
+   }
+   
 }
 
 function checkAllSelected() {
@@ -107,8 +108,7 @@ confirmar.addEventListener("click", confirm);
 function confirm() {
     let result = prompt("¿Estás seguro?");
     if (result === "si") {
-        alert("Código // QR");
-        // let user = 
+    
     } else {
         alert("Ok, te vamos a redirigir");
     }

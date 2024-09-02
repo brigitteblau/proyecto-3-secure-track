@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/selector.css">
     <link rel="icon" type="image/png" href="img/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
     <header> 
@@ -50,7 +51,9 @@
             <option value="" disabled selected id="optionMonta">Seleccioná el aula del piso correspondiente monta</option>
         </select>
         <button class="confirmar" id="confirmButton" style="display: none;">Confirmar</button>
-   
+        <div class="barcode-container">
+            <div class="barcode" id="barcode"></div>
+        </div>
     </main>
     <footer>
         <div class="footer-content">
@@ -63,7 +66,7 @@
             </div>
         </div>
     </footer>
-    <script src="js/selectors.js"></script> 
+    <script src="js/selectors.js" type="module"></script> 
     <main> 
 </body>
 </html
