@@ -1,9 +1,8 @@
-
 body {
-    /* background: linear-gradient(300deg, #00BFFF, #1E90FF, #000080); */
     min-height: 100vh;
     margin: 0;
     display: flex;
+    font-family: Arial, sans-serif;
 }
 
 main {
@@ -36,16 +35,16 @@ main {
     border: none;
     outline: none;
     cursor: pointer;
-    transition: background-color 0.3s;
     color: #fff;
+    transition: background-color 0.3s;
 }
 
 .decision-button.active {
-    background-color:#1f6374; 
+    background-color: #1f6374;
 }
 
 .decision-button:hover {
-    padding: 17px 22px;
+    background-color: #1b6179;
 }
 
 .content {
@@ -54,8 +53,7 @@ main {
 }
 
 .content.active {
-     display: none; /*lo cambie a none en una de esas quizas anda  */
-
+    display: block;
 }
 
 .title {
@@ -64,11 +62,7 @@ main {
     text-align: center;
 }
 
-#login {
-    display: flex;
-    flex-direction: column;
-}
-#register{
+form {
     display: flex;
     flex-direction: column;
 }
@@ -78,7 +72,7 @@ label {
     font-weight: bold;
 }
 
-input, select {
+input {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
@@ -97,22 +91,8 @@ input, select {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.submit:hover{
+.submit:hover {
     background-color: #1b6179;
-}
-
-
-p {
-    text-align: center;
-}
-
-a {
-   text-decoration: double;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 /* Responsive Styles */

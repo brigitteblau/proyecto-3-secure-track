@@ -38,7 +38,11 @@
         </nav>
     </header>   
     <main>
-     
+      
+        <div class="qr-container">
+            <div class="qr" id="qr"></div>
+            <h2 id="text"></h2>
+        </div>
     </main>
     <footer>
         <div class="footer-content">
@@ -51,15 +55,6 @@
             </div>
         </div>
     </footer>
-<script>
- document.addEventListener('DOMContentLoaded', function () {
-    JsBarcode("#barcode", "briguu", {
-        format: "CODE128", 
-        lineColor: "#3C6975", 
-        width: 2, 
-        height: 100, 
-        displayValue: false
-    });
-});</script> 
+<script src="./js/qr.js" type="module"></script>
 </body>
 </html>

@@ -37,41 +37,25 @@ function showLibertador() {
     classrooms.innerHTML = ""; 
 }
 
-async function initializeClassrooms() {
+async function fetchClassrooms(building) {
     try {
-        const data = await getCarros();
-        console.log("Datos recibidos del backend:", data);
+        const response = await fetch(`https://secure-track-db.vercel.app/rooms`);
+        if (!response.ok) {
+            throw new Error("Error al obtener aulas");
+        }
+        const data = await response.json();
 
-        // Limpia las estructuras antes de poblarlas
-        for (let key in libertador) libertador[key] = [];
-        for (let key in monta) monta[key] = [];
-
-        data.forEach((item) => {
-            const roomNumber = item.roomNumber; // Ej: "L001", "M002"
-            const building = roomNumber[0]; // "L" o "M"
-            const floor = roomNumber.slice(1); // Extraer el piso completo (e.g., "001", "002", etc.)
-
-            // Asegúrate de que las claves existen
-            if (building === "M" && monta[floor] !== undefined) {
-                monta[floor].push(item);
-            } else if (building === "L" && libertador[floor] !== undefined) {
-                libertador[floor].push(item);
-            } else {
-                console.warn(`Piso no esperado: ${floor} para el edificio ${building}`);
-            }
-        });
-
-        console.log("Aulas de Montañeses:", monta);
-        console.log("Aulas de Libertador:", libertador);
-
+        // Filtra las aulas según el edificio
+        const filteredData = data.filter(room => room.roomNumber.startsWith(building === "monta" ? "M" : "L"));
+        return filteredData;
     } catch (error) {
-        console.error("Error al inicializar las aulas:", error);
+        console.error("Error al realizar el fetch:", error);
+        return [];
     }
 }
 
 async function updateClassroomsOptions(piso, edificio) {
     let options = [];
-
     if (edificio === "monta") {
         options = monta[piso] || [];
     } else if (edificio === "libertador") {
@@ -99,15 +83,20 @@ async function updateClassroomsOptions(piso, edificio) {
     } else {
         classrooms.classList.add("disactive");
         confirmButton.style.display = "none";
+        showModal();
     }
 }
 
-selectMonta.addEventListener("change", () => {
-    updateClassroomsOptions(selectMonta.value.slice(1), "monta");
+selectMonta.addEventListener("change", async () => {
+    const selectedFloor = selectMonta.value.slice(1);
+    monta[selectedFloor] = await fetchClassrooms("monta");
+    updateClassroomsOptions(selectedFloor, "monta");
 });
 
-selectLib.addEventListener("change", () => {
-    updateClassroomsOptions(selectLib.value.slice(1), "libertador");
+selectLib.addEventListener("change", async () => {
+    const selectedFloor = selectLib.value.slice(1);
+    libertador[selectedFloor] = await fetchClassrooms("libertador");
+    updateClassroomsOptions(selectedFloor, "libertador");
 });
 
 classrooms.addEventListener("change", checkAllSelected);
@@ -122,3 +111,55 @@ function checkAllSelected() {
 }
 
 initializeClassrooms();
+confirmButton.addEventListener("click", ()=> requestComputer())
+let qr = document.getElementById("qr")
+async function requestComputer(){
+    
+    const response = await fetch(`https://secure-track-db.vercel.app/computers/request`, {
+        method: "POST",
+        mode:"cors",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify({
+            userId:76,
+            cartId:parseInt(classrooms.value),
+        }),
+    });
+    const res = await JSON.stringify(response.json());
+    if (response.status == 200) {
+        location.href = "../qr.html?token=" + res
+    }
+    
+}
+async function initializeClassrooms() {
+    try {
+        const data = await getCarros();
+        console.log("Datos recibidos del backend:", data);
+
+        // Limpia las estructuras antes de poblarlas
+        for (let key in libertador) libertador[key] = [];
+        for (let key in monta) monta[key] = [];
+
+        data.forEach((item) => {
+            const roomNumber = item.roomNumber; // Ej: "L001", "M002"
+            const building = roomNumber[0]; // "L" o "M"
+            const floor = roomNumber.slice(1, 2); // Extraer solo el primer dígito del piso (e.g., "1", "2", etc.)
+
+            // Asigna las aulas al edificio y piso correctos
+            if (building === "M" && monta[floor] !== undefined) {
+                monta[floor].push(item);
+            } else if (building === "L" && libertador[floor] !== undefined) {
+                libertador[floor].push(item);
+            } else {
+                console.warn(`Piso no esperado: ${floor} para el edificio ${building}`);
+            }
+        });
+
+        console.log("Aulas de Montañeses:", monta);
+        console.log("Aulas de Libertador:", libertador);
+
+    } catch (error) {
+        console.error("Error al inicializar las aulas:", error);
+    }
+}
