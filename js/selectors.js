@@ -1,7 +1,7 @@
 import { getCarros } from "./repository.js";
 
-let libertador = {};
-let monta = {};
+let libertador = { "0": [], "1": [], "2": [], "3": [] };
+let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
 
 function showModal() {
     document.getElementById("modal").style.display = "block";
@@ -15,7 +15,7 @@ document.getElementById("closeModal").addEventListener("click", closeModal);
 
 const selectMonta = document.getElementById("select-monta");
 const selectLib = document.getElementById("select-libertador");
-const classrooms = document.getElementById("classrooms");
+const classrooms = document.getElementById("classrooms"); 
 const confirmButton = document.getElementById("confirmButton");
 
 document.getElementById("monta").addEventListener("click", showMonta);
@@ -26,7 +26,7 @@ function showMonta() {
     document.querySelector(".select-monta").classList.remove("disactive");
     classrooms.classList.add("disactive");
     confirmButton.style.display = "none";
-    updateClassroomsOptions(selectMonta.value, "monta");
+    classrooms.innerHTML = ""; 
 }
 
 function showLibertador() {
@@ -34,7 +34,7 @@ function showLibertador() {
     document.querySelector(".select-libertador").classList.remove("disactive");
     classrooms.classList.add("disactive");
     confirmButton.style.display = "none";
-    updateClassroomsOptions(selectLib.value, "libertador");
+    classrooms.innerHTML = ""; 
 }
 
 async function initializeClassrooms() {
@@ -42,36 +42,30 @@ async function initializeClassrooms() {
         const data = await getCarros();
         console.log("Datos recibidos del backend:", data);
 
-        libertador = { "0": [], "1": [], "2": [], "3": [] };
-        monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
+        // Limpia las estructuras antes de poblarlas
+        for (let key in libertador) libertador[key] = [];
+        for (let key in monta) monta[key] = [];
 
         data.forEach((item) => {
-            const roomNumber = item.roomNumber;
-            const building = roomNumber[0];
-            const floor = roomNumber.slice(1);
+            const roomNumber = item.roomNumber; // Ej: "L001", "M002"
+            const building = roomNumber[0]; // "L" o "M"
+            const floor = roomNumber.slice(1); // Extraer el piso completo (e.g., "001", "002", etc.)
 
-            if (building === "M") {
-                if (!monta[floor]) monta[floor] = [];
+            // Asegúrate de que las claves existen
+            if (building === "M" && monta[floor] !== undefined) {
                 monta[floor].push(item);
-            } else if (building === "L") {
-                if (!libertador[floor]) libertador[floor] = [];
+            } else if (building === "L" && libertador[floor] !== undefined) {
                 libertador[floor].push(item);
+            } else {
+                console.warn(`Piso no esperado: ${floor} para el edificio ${building}`);
             }
         });
 
         console.log("Aulas de Montañeses:", monta);
         console.log("Aulas de Libertador:", libertador);
 
-        // Actualizar las opciones de los classrooms si hay una selección previa
-        if (selectMonta.value) {
-            updateClassroomsOptions(selectMonta.value, "monta");
-        } else if (selectLib.value) {
-            updateClassroomsOptions(selectLib.value, "libertador");
-        }
-
     } catch (error) {
-        console.error("Error al obtener datos del backend:", error);
-        showModal();
+        console.error("Error al inicializar las aulas:", error);
     }
 }
 
@@ -84,14 +78,13 @@ async function updateClassroomsOptions(piso, edificio) {
         options = libertador[piso] || [];
     }
 
-    classrooms.innerHTML = "";
+    classrooms.innerHTML = ""; 
 
-    let defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = "Selecciona un aula";
-    defaultOption.disabled = true;
-    defaultOption.selected = true;
-    classrooms.appendChild(defaultOption);
+    let classroomOption = document.createElement("option");
+    classroomOption.textContent = "Selecciona un aula";
+    classroomOption.disabled = true;
+    classroomOption.selected = true;
+    classrooms.appendChild(classroomOption); 
 
     options.forEach(room => {
         let opt = document.createElement("option");
@@ -100,17 +93,21 @@ async function updateClassroomsOptions(piso, edificio) {
         classrooms.appendChild(opt);
     });
 
-    classrooms.style.display = options.length > 0 ? "block" : "none";
-    confirmButton.style.display = options.length > 0 ? "block" : "none";
-    if (options.length === 0) showModal();
+    if (options.length > 0) {
+        classrooms.classList.remove("disactive");
+        confirmButton.style.display = "block";
+    } else {
+        classrooms.classList.add("disactive");
+        confirmButton.style.display = "none";
+    }
 }
 
 selectMonta.addEventListener("change", () => {
-    updateClassroomsOptions(selectMonta.value, "monta");
+    updateClassroomsOptions(selectMonta.value.slice(1), "monta");
 });
 
 selectLib.addEventListener("change", () => {
-    updateClassroomsOptions(selectLib.value, "libertador");
+    updateClassroomsOptions(selectLib.value.slice(1), "libertador");
 });
 
 classrooms.addEventListener("change", checkAllSelected);
@@ -119,9 +116,9 @@ function checkAllSelected() {
     const selectedClassroom = classrooms.value;
     if (selectedClassroom) {
         confirmButton.style.display = "block";
-        // Aquí puedes implementar la lógica para manejar la selección de aulas
+    } else {
+        confirmButton.style.display = "none";
     }
 }
 
-// Inicializar las opciones de las aulas al cargar la página
 initializeClassrooms();
