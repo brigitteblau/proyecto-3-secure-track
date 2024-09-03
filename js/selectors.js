@@ -1,4 +1,6 @@
 import { getCarros } from "./repository.js";
+let params = new URLSearchParams(window.location.search)
+let usuario = params.get("user")
 
 let libertador = { "0": [], "1": [], "2": [], "3": [] };
 let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
@@ -114,7 +116,10 @@ initializeClassrooms();
 confirmButton.addEventListener("click", ()=> requestComputer())
 let qr = document.getElementById("qr")
 async function requestComputer(){
-    
+    console.log(JSON.stringify({
+        userId:(JSON.parse(usuario).id),
+        cartId:parseInt(classrooms.value),
+    }),)
     const response = await fetch(`https://secure-track-db.vercel.app/computers/request`, {
         method: "POST",
         mode:"cors",
@@ -122,7 +127,7 @@ async function requestComputer(){
             "Content-Type": "application/json"
         },
         body:JSON.stringify({
-            userId:76,
+            userId:(JSON.parse(usuario).id),
             cartId:parseInt(classrooms.value),
         }),
     });
