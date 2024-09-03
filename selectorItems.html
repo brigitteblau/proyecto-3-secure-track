@@ -22,7 +22,7 @@
                 <li class="desplegableHeader">
                     <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
                      <div class="desplegable-contenido"> 
-                        <!--aca se tienen que cargar los carros que se pueden retirar (luego del log in) -->
+                        <!-- Aca se tienen que cargar los carros que se pueden retirar (luego del log in) -->
                     </div>
                 </li>
             </ul>
@@ -30,31 +30,49 @@
     </header>   
     <main>
         <div class="decision" id="decision">
-            <p> Retirar una computadora del edifico <button class="building" id="monta">MONTAÑESES</button> o <button class="building" id="libertador">LIBERTADOR</button></p>
+            <p>Retirar una computadora del edificio 
+                <button class="building" id="monta">MONTAÑESES</button> 
+                o 
+                <button class="building" id="libertador">LIBERTADOR</button>
+            </p>
         </div>
+    
         <select class="select-libertador disactive" id="select-libertador">
             <option value="" disabled selected>Selecciona el piso de Libertador</option>
             <option class="option-select" value="L0">Libertador Planta baja</option>
-            <option class="option-select"value="L1">Libertador Primer piso</option>
-            <option class="option-select" value="L2">Libertador segundo piso</option>
-            <option class="option-select" value="L3">Libertador tercer piso</option>   
+            <option class="option-select" value="L1">Libertador Primer piso</option>
+            <option class="option-select" value="L2">Libertador Segundo piso</option>
+            <option class="option-select" value="L3">Libertador Tercer piso</option>
         </select>
-        <select class="select-monta disactive" id="select-monta"> 
+    
+        <select class="select-monta disactive" id="select-monta">
             <option value="" disabled selected>Selecciona el piso de Montañeses</option>
             <option class="option-select" value="M1">Montañeses Primer piso</option>
-            <option class="option-select" value="M2">Montañeses segundo piso</option>
-            <option class="option-select" value="M3">Montañeses tercer piso</option>   
-            <option class="option-select" value="M4">Montañeses cuarto piso</option>   
-            <option class="option-select" value="M5">Montañeses quinto piso</option>   
+            <option class="option-select" value="M2">Montañeses Segundo piso</option>
+            <option class="option-select" value="M3">Montañeses Tercer piso</option>
+            <option class="option-select" value="M4">Montañeses Cuarto piso</option>
+            <option class="option-select" value="M5">Montañeses Quinto piso</option>
         </select>
+    
         <select class="classrooms disactive" id="classrooms">
-            <option value="" disabled selected id="optionMonta">Seleccioná el aula del piso correspondiente monta</option>
+            <option value="" disabled selected>Selecciona el aula del piso correspondiente</option>
         </select>
+    
         <button class="confirmar" id="confirmButton" style="display: none;">Confirmar</button>
-        <div class="barcode-container">
-            <div class="barcode" id="barcode"></div>
+    
+        <div class="qr-container">
+            <div class="qr" id="qr"></div>
         </div>
     </main>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <p id="modal-message">No hay aulas disponibles en este piso, por favor seleccione otra. ¡Gracias por comprender!</p>
+        </div>
+    </div>
+    
+
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -66,7 +84,8 @@
             </div>
         </div>
     </footer>
+
+
     <script src="js/selectors.js" type="module"></script> 
-    <main> 
 </body>
-</html
+</html>
