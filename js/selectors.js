@@ -1,5 +1,5 @@
 import { getCarros } from "./repository.js";
-let usuario = localStorage.getItem("userId")
+let usuario = localStorage.getItem("userId");
 
 let libertador = { "0": [], "1": [], "2": [], "3": [] };
 let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
@@ -16,8 +16,10 @@ document.getElementById("closeModal").addEventListener("click", closeModal);
 
 const selectMonta = document.getElementById("select-monta");
 const selectLib = document.getElementById("select-libertador");
-const classrooms = document.getElementById("classrooms"); 
+const classrooms = document.getElementById("classrooms");
 const confirmButton = document.getElementById("confirmButton");
+const returnButton = document.getElementById("returnButton");
+const loadingScreen = document.getElementById("loadingScreen");
 
 document.getElementById("monta").addEventListener("click", showMonta);
 document.getElementById("libertador").addEventListener("click", showLibertador);
@@ -27,7 +29,8 @@ function showMonta() {
     document.querySelector(".select-monta").classList.remove("disactive");
     classrooms.classList.add("disactive");
     confirmButton.style.display = "none";
-    classrooms.innerHTML = ""; 
+    returnButton.style.display = "none";
+    classrooms.innerHTML = "";
 }
 
 function showLibertador() {
@@ -35,7 +38,8 @@ function showLibertador() {
     document.querySelector(".select-libertador").classList.remove("disactive");
     classrooms.classList.add("disactive");
     confirmButton.style.display = "none";
-    classrooms.innerHTML = ""; 
+    returnButton.style.display = "none";
+    classrooms.innerHTML = "";
 }
 
 async function fetchClassrooms(building) {
@@ -63,13 +67,13 @@ async function updateClassroomsOptions(piso, edificio) {
         options = libertador[piso] || [];
     }
 
-    classrooms.innerHTML = ""; 
+    classrooms.innerHTML = "";
 
     let classroomOption = document.createElement("option");
     classroomOption.textContent = "Selecciona un aula";
     classroomOption.disabled = true;
     classroomOption.selected = true;
-    classrooms.appendChild(classroomOption); 
+    classrooms.appendChild(classroomOption);
 
     options.forEach(room => {
         let opt = document.createElement("option");
@@ -81,9 +85,11 @@ async function updateClassroomsOptions(piso, edificio) {
     if (options.length > 0) {
         classrooms.classList.remove("disactive");
         confirmButton.style.display = "block";
+        returnButton.style.display = "block";
     } else {
         classrooms.classList.add("disactive");
         confirmButton.style.display = "none";
+        returnButton.style.display = "none";
         showModal();
     }
 }
@@ -106,40 +112,80 @@ function checkAllSelected() {
     const selectedClassroom = classrooms.value;
     if (selectedClassroom) {
         confirmButton.style.display = "block";
+        returnButton.style.display = "block";
     } else {
         confirmButton.style.display = "none";
+        returnButton.style.display = "none";
     }
 }
 
-initializeClassrooms();
-confirmButton.addEventListener("click", ()=> requestComputer())
-let qr = document.getElementById("qr")
-async function requestComputer(){
-    console.log(JSON.stringify({
-        userId:((usuario)),
-        cartId:parseInt(classrooms.value),
-    }),)
-    const response = await fetch(`https://secure-track-db.vercel.app/computers/request`, {
-        method: "POST",
-        mode:"cors",
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body:JSON.stringify({
-            userId:usuario,
-            cartId:parseInt(classrooms.value),
-        }),
-    });
-    
-    const res =  JSON.stringify(await response.json());
+confirmButton.addEventListener("click", () => requestComputer());
+returnButton.addEventListener("click", () => returnComputer());
+
+async function requestComputer() {
+    console.log(
+        JSON.stringify({
+            userId: usuario,
+            cartId: parseInt(classrooms.value),
+        })
+    );
+    const response = await fetch(
+        `https://secure-track-db.vercel.app/computers/request`,
+        {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: usuario,
+                cartId: parseInt(classrooms.value),
+            }),
+        }
+    );
+
+    const res = JSON.stringify(await response.json());
     if (response.status == 200) {
         localStorage.setItem("correctKey", res);
-        location.href = "../qr.html"
+        location.href = "../qr.html";
     }
-    
 }
+
+async function returnComputer() {
+    // Lógica de devolución de computadora
+    console.log(
+        JSON.stringify({
+            userId: usuario,
+            cartId: parseInt(classrooms.value),
+        })
+    );
+    const response = await fetch(
+        `https://secure-track-db.vercel.app/computers/request-return`,
+        {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: usuario,
+                cartId: parseInt(classrooms.value),
+            }),
+        }
+    );
+
+    const res = JSON.stringify(await response.json());
+    if (response.status == 200) {
+        localStorage.setItem("correctKey", res);
+        location.href = "../qr.html";
+    }
+}
+
 async function initializeClassrooms() {
     try {
+        // Mostrar la pantalla de carga
+        loadingScreen.style.display = "flex";
+
         const data = await getCarros();
         console.log("Datos recibidos del backend:", data);
 
@@ -167,5 +213,10 @@ async function initializeClassrooms() {
 
     } catch (error) {
         console.error("Error al inicializar las aulas:", error);
+    } finally {
+        // Ocultar la pantalla de carga
+        loadingScreen.style.display = "none";
     }
 }
+
+initializeClassrooms();

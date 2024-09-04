@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
+    <!-- Pantalla de carga -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+</div>
+
     <header> 
         <nav class="menu"> 
             <a href="index.html">
@@ -21,45 +26,49 @@
                 <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
                 <li class="desplegableHeader">
                     <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
-                     <div class="desplegable-contenido"> 
-                        <!-- Aca se tienen que cargar los carros que se pueden retirar (luego del log in) -->
-                    </div>
+                     <div class="desplegable-contenido"></div>
                 </li>
             </ul>
         </nav>
     </header>   
     <main>
         <div class="decision" id="decision">
-            <p>Retirar una computadora del edificio 
+            <p>Retirar una computadora del edificio:</p>
+            <div class="building-buttons">
                 <button class="building" id="monta">MONTAÑESES</button> 
-                o 
                 <button class="building" id="libertador">LIBERTADOR</button>
-            </p>
+            </div>
         </div>
     
-        <select class="select-libertador disactive" id="select-libertador">
-            <option value="" disabled selected>Selecciona el piso de Libertador</option>
-            <option class="option-select" value="L0">Libertador Planta baja</option>
-            <option class="option-select" value="L1">Libertador Primer piso</option>
-            <option class="option-select" value="L2">Libertador Segundo piso</option>
-            <option class="option-select" value="L3">Libertador Tercer piso</option>
-        </select>
+        <div class="selector-container">
+            <select class="select-libertador disactive" id="select-libertador">
+                <option value="" disabled selected>Selecciona el piso de Libertador</option>
+                <option class="option-select" value="L0">Libertador Planta baja</option>
+                <option class="option-select" value="L1">Libertador Primer piso</option>
+                <option class="option-select" value="L2">Libertador Segundo piso</option>
+                <option class="option-select" value="L3">Libertador Tercer piso</option>
+            </select>
     
-        <select class="select-monta disactive" id="select-monta">
-            <option value="" disabled selected>Selecciona el piso de Montañeses</option>
-            <option class="option-select" value="M1">Montañeses Primer piso</option>
-            <option class="option-select" value="M2">Montañeses Segundo piso</option>
-            <option class="option-select" value="M3">Montañeses Tercer piso</option>
-            <option class="option-select" value="M4">Montañeses Cuarto piso</option>
-            <option class="option-select" value="M5">Montañeses Quinto piso</option>
-        </select>
+            <select class="select-monta disactive" id="select-monta">
+                <option value="" disabled selected>Selecciona el piso de Montañeses</option>
+                <option class="option-select" value="M1">Montañeses Primer piso</option>
+                <option class="option-select" value="M2">Montañeses Segundo piso</option>
+                <option class="option-select" value="M3">Montañeses Tercer piso</option>
+                <option class="option-select" value="M4">Montañeses Cuarto piso</option>
+                <option class="option-select" value="M5">Montañeses Quinto piso</option>
+            </select>
+        </div>
     
-        <select class="classrooms disactive" id="classrooms">
-            <option value="" disabled selected>Selecciona el aula del piso correspondiente</option>
-        </select>
+        <div class="classroom-container">
+            <select class="classrooms disactive" id="classrooms">
+                <option value="" disabled selected>Selecciona el aula del piso correspondiente</option>
+            </select>
+        </div>
     
-        <button class="confirmar" id="confirmButton" style="display: none;">Confirmar</button>
-   
+        <div class="button-container">
+            <button class="confirmar" id="confirmButton" style="display: none;">Retiro Computadora</button>
+            <button class="devolucion" id="returnButton" style="display: none;">Devolución</button>
+        </div>
     </main>
     
     <div class="modal" id="modal">
@@ -69,7 +78,6 @@
         </div>
     </div>
     
-
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -81,7 +89,6 @@
             </div>
         </div>
     </footer>
-
 
     <script src="js/selectors.js" type="module"></script> 
 </body>
