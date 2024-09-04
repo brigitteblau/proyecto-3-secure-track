@@ -117,7 +117,7 @@ confirmButton.addEventListener("click", ()=> requestComputer())
 let qr = document.getElementById("qr")
 async function requestComputer(){
     console.log(JSON.stringify({
-        userId:(JSON.parse(usuario).id),
+        userId:((usuario)),
         cartId:parseInt(classrooms.value),
     }),)
     const response = await fetch(`https://secure-track-db.vercel.app/computers/request`, {
@@ -127,11 +127,12 @@ async function requestComputer(){
             "Content-Type": "application/json"
         },
         body:JSON.stringify({
-            userId:(JSON.parse(usuario).id),
+            userId:usuario,
             cartId:parseInt(classrooms.value),
         }),
     });
-    const res = await JSON.stringify(response.json());
+    
+    const res =  JSON.stringify(await response.json());
     if (response.status == 200) {
         location.href = "../qr.html?token=" + res
     }

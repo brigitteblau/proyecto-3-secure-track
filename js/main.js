@@ -47,10 +47,10 @@ async function register_user(user) {
             },
             body: JSON.stringify(user)
         });
-        let data = await JSON.stringify(response.json());
+        let data = await response.json()
         console.log(data);
         if (response.status === 200) {
-            location.href = "../selectorItems.html?user=" + data;
+            location.href = "../selectorItems.html?user=" + data.id;
         }
     } catch (error) {
         console.log(error);
