@@ -50,7 +50,8 @@ async function register_user(user) {
         let data = await response.json()
         console.log(data);
         if (response.status === 200) {
-            location.href = "../selectorItems.html?user=" + data.id;
+            localStorage.setItem("userId", data.id)
+            location.href = "../selectorItems.html"
         }
     } catch (error) {
         console.log(error);
@@ -68,15 +69,16 @@ async function logueo_user(user) {
         });
         let data = await response.json();
         console.log(data);
-        if (data.OCUPACION === "Estudiante") {
-            location.href = "estudiante.html";
-            localStorage.setItem("estudio-Key", "user-log");
-        } else if (data.OCUPACION === "Asistente") {
-            location.href = "asistente.html";
-            localStorage.setItem("asist-Key", "asist-log");
-        } else {
-            location.href = "profesor.html";
-            localStorage.setItem("Prof-Key", "profe-log");
+        if (data.occupation === "Estudiante") {
+              localStorage.setItem("userId", data.id)
+            location.href = "../selectorItems.html"
+
+        } else if (data.occupation === "Asistente") {
+              localStorage.setItem("userId", data.id)
+            location.href = "../asistente.html"
+        } else if(data.occupation === "Profesor") {
+              localStorage.setItem("userId", data.id)
+            location.href = "../profesor.html"
         }
     } catch (error) {
         console.log(error);

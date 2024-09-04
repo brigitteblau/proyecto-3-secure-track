@@ -1,6 +1,5 @@
 import { getCarros } from "./repository.js";
-let params = new URLSearchParams(window.location.search)
-let usuario = params.get("user")
+let usuario = localStorage.getItem("userId")
 
 let libertador = { "0": [], "1": [], "2": [], "3": [] };
 let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
@@ -134,7 +133,8 @@ async function requestComputer(){
     
     const res =  JSON.stringify(await response.json());
     if (response.status == 200) {
-        location.href = "../qr.html?token=" + res
+        localStorage.setItem("correctKey", res);
+        location.href = "../qr.html"
     }
     
 }
